@@ -118,9 +118,9 @@ font-style:italic;
 
 /* Gallery */
 .grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;margin-top:18px}
-.tile{position:relative;border-radius:16px;overflow:hidden;border:1px solid #f0d3df;background:#fff}
+.tile{position:absolute;border-radius:16px;overflow:hidden;border:1px solid #f0d3df;background:#fff; top: 10px;}
 .tile button{position:absolute;inset:0;border:0;background:transparent;cursor:pointer}
-.tile__cap{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;padding:6px 10px;border-radius:999px;font-size:12px}
+.tile__cap{position:absolute;left:50px;top:10px;background:rgba(0,0,0,.55);color:#fff;padding:6px 10px;border-radius:999px;font-size:12px}
 
 /* Products */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -165,16 +165,7 @@ display:block;
 }
 
 
-.tile__cap{
-position:absolute;
-left:10px;
-bottom:10px;
-background:rgba(0,0,0,.55);
-color:#fff;
-padding:6px 10px;
-border-radius:999px;
-font-size:12px;
-}
+
   .insta-gradient {
     font-size: 28px; /* tamaño más grande */
     background: radial-gradient(circle at 30% 107%, 
@@ -186,6 +177,30 @@ font-size:12px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+/* ya tienes .tile con height:250px y position:relative */
+.tile { position: relative; }
+
+/* botón que cubre toda la tarjeta, por detrás de la mini-card */
+.tile-hit{
+  position:absolute; inset:0;
+  background:transparent; border:0; cursor:pointer;
+  z-index:1;  /* por detrás de .mini-card */
+}
+
+/* mini-tarjeta arriba del botón, centrada su imagen */
+.mini-card{
+  position:absolute; left:12px; bottom:12px;
+  width:96px; height:96px; z-index:2;
+  border-radius:12px; overflow:hidden; background:#fff;
+  border:2px solid #fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+  display:flex; align-items:center; justify-content:center;
+}
+.mini-card img{ width:100%; height:100%; object-fit:cover; }
+
+/* asegúrate de tener esto para mantener proporciones */
+.tile-main{ width:100%; height:100%; object-fit:cover; }
 /* Responsive */
 @media (max-width: 900px){
   .hero, .story{grid-template-columns:1fr}

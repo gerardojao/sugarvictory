@@ -12,13 +12,26 @@ modal.innerHTML = '<img alt="Vista ampliada" style="max-width:100%;height:auto;d
 document.body.appendChild(modal);
 
 gallery?.addEventListener('click', (e)=>{
+  // si clican la mini-tarjeta, abre esa imagen
+  const mini = e.target.closest('.mini-card');
+  if (mini) {
+    const srcMini = mini.dataset.full || mini.querySelector('img')?.src;
+    if (srcMini) {
+      modal.querySelector('img').src = srcMini;
+      if (typeof modal.showModal === 'function') modal.showModal();
+    }
+    return;
+  }
+
+  // si clican la tarjeta grande, abre la principal
   const fig = e.target.closest('figure');
-  if(!fig) return;
-  const src = fig.querySelector('img')?.src;
-  if(!src) return;
+  if (!fig) return;
+  const src = fig.querySelector('.tile-main')?.src || fig.querySelector('img')?.src;
+  if (!src) return;
   modal.querySelector('img').src = src;
-  if(typeof modal.showModal === 'function') modal.showModal();
+  if (typeof modal.showModal === 'function') modal.showModal();
 });
+
 modal.addEventListener('click', ()=> modal.close());
 
 // Formulario: validación simple + fallback mailto

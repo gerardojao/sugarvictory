@@ -101,12 +101,25 @@
       <p class="lead">Una muestra de nuestras tartas, cupcakes y mesas dulces. Haz clic para ampliar.</p>
       <div class="grid" id="gallery">
         <!-- Reemplaza las imágenes por las tuyas (src). Mantén alt para accesibilidad/SEO. -->
-        <figure class="tile"><img src="assets/tarta-frutos-rojos-fondo.jpeg"alt="Tarta de frutos rojos" loading="lazy"><button aria-label="Ver imagen 1"></button><figcaption class="tile__cap">Tarta frutos rojos</figcaption></figure>
+   <figure class="tile">
+  <img class="tile-main" src="assets/tarta-fruts-red.jpeg"
+       alt="Tarta de frutos rojos" loading="lazy">
+
+  <!-- Mini-tarjeta clicable en la esquina inferior izquierda -->
+  <div class="mini-card" data-full="assets/tarta-frutos-rojos-fondo.jpeg" title="Ver mini tarta">
+    <img src="assets/tarta-frutos-rojos-fondo.jpeg" alt="Mini tarta decorada">
+  </div>
+
+  <!-- Botón de impacto visual para toda la tarjeta -->
+  <button class="tile-hit" aria-label="Ver imagen 1"></button>
+
+  <figcaption class="tile__cap">Tarta frutos rojos</figcaption>
+</figure>
         <figure class="tile"><img src="assets/cupcakes-frame.png" alt="Cupcakes rosa" loading="lazy"><button aria-label="Ver imagen 2"></button><figcaption class="tile__cap">Cupcakes rosa</figcaption></figure>
         <figure class="tile"><img src="assets/tarta-tematica.jpeg" alt="Tarta temática" loading="lazy"><button aria-label="Ver imagen 3"></button><figcaption class="tile__cap">Tarta temática</figcaption></figure>
         <figure class="tile"><img src="assets/tarta-desnuda.jpeg" alt="Galletas decoradas" loading="lazy"><button aria-label="Ver imagen 4"></button><figcaption class="tile__cap">Tarta Desnuda</figcaption></figure>
-        <figure class="tile"><img src="assets/tarta-chocolate.jpeg" alt="Mesa Cumpleaños" loading="lazy"><button aria-label="Ver imagen 5"></button><figcaption class="tile__cap">Mesa Cumpleaños</figcaption></figure>
-        <figure class="tile"><img src="assets/flash.jpeg" alt="Tarta Crash Bandicoot" loading="lazy"><button aria-label="Ver imagen 6"></button><figcaption class="tile__cap">Tarta de Flash</figcaption></figure>
+        <figure class="tile"><img src="assets/primera-comunion.jpeg" alt="Mesa Cumpleaños" loading="lazy"><button aria-label="Ver imagen 5"></button><figcaption class="tile__cap">Primera Comunión</figcaption></figure>
+        <figure class="tile"><img src="assets/flash.jpeg" alt="Tarta Crash Bandicoot" loading="lazy"><button aria-label="Ver imagen 6"></button><figcaption class="tile__cap">Tarta Flash</figcaption></figure>
       </div>
     </section>
 
