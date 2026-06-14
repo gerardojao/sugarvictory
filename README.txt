@@ -1,10 +1,12 @@
-# Sugar Victory — Landing
+# Sugar Victory Cake - Landing
 
-Estructura separada en archivos:
-- index.html
-- styles.css
-- app.js
-- assets/sugar-victory-logo.png (coloca aquí tu logo)
+Web estática para Sugar Victory Cake.
 
-## Usar
-Abre `index.html` en tu navegador o súbelo a Netlify/GitHub Pages.
+Archivos principales:
+- `index.html`
+- `styles.css`
+- `app.js`
+- `assets/`
+
+Uso:
+Abre `index.html` en el navegador o publica la carpeta en Netlify, Vercel, GitHub Pages o cualquier hosting estático.

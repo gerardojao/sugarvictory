@@ -1,58 +1,43 @@
-// Año dinámico del footer
-document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
-// Galería: abrir imagen en modal simple
-const gallery = document.getElementById('gallery');
-const modal = document.createElement('dialog');
-modal.style.padding = '0';
-modal.style.border = 'none';
-modal.style.maxWidth = 'min(95vw, 900px)';
-modal.style.borderRadius = '16px';
-modal.innerHTML = '<img alt="Vista ampliada" style="max-width:100%;height:auto;display:block">';
+const gallery = document.getElementById("gallery");
+const modal = document.createElement("dialog");
+modal.className = "image-modal";
+modal.innerHTML = '<img alt="Vista ampliada" style="max-width:min(94vw, 980px);max-height:88vh;display:block;border-radius:8px;">';
 document.body.appendChild(modal);
 
-gallery?.addEventListener('click', (e)=>{
-  // si clican la mini-tarjeta, abre esa imagen
-  const mini = e.target.closest('.mini-card');
-  if (mini) {
-    const srcMini = mini.dataset.full || mini.querySelector('img')?.src;
-    if (srcMini) {
-      modal.querySelector('img').src = srcMini;
-      if (typeof modal.showModal === 'function') modal.showModal();
-    }
-    return;
-  }
+gallery?.addEventListener("click", (event) => {
+  const figure = event.target.closest("figure");
+  if (!figure) return;
 
-  // si clican la tarjeta grande, abre la principal
-  const fig = e.target.closest('figure');
-  if (!fig) return;
-  const src = fig.querySelector('.tile-main')?.src || fig.querySelector('img')?.src;
-  if (!src) return;
-  modal.querySelector('img').src = src;
-  if (typeof modal.showModal === 'function') modal.showModal();
+  const image = figure.querySelector("img");
+  if (!image) return;
+
+  modal.querySelector("img").src = image.currentSrc || image.src;
+  if (typeof modal.showModal === "function") {
+    modal.showModal();
+  }
 });
 
-modal.addEventListener('click', ()=> modal.close());
+modal.addEventListener("click", () => modal.close());
 
-// Formulario: validación simple + fallback mailto
-const form = document.getElementById('form');
-const toast = document.getElementById('toast');
-form?.addEventListener('submit', (e)=>{
-  e.preventDefault();
+const form = document.getElementById("form");
+
+form?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
   const data = Object.fromEntries(new FormData(form).entries());
-  if(!data.name || !data.email || !data.message || !document.getElementById('policy').checked){
-    alert('Por favor, completa los campos obligatorios.');
-    return;
-  }
-  // Simular envío (aquí podrías integrar EmailJS, Formspree o tu backend)
-  toast.style.display='block';
-  setTimeout(()=> toast.style.display='none', 4000);
+  const message = [
+    "Hola Sugar Victory Cake, quiero pedir presupuesto.",
+    "",
+    `Nombre: ${data.name || ""}`,
+    `WhatsApp: ${data.phone || ""}`,
+    `Email: ${data.email || ""}`,
+    `Servicio: ${data.service || ""}`,
+    "",
+    `Detalles: ${data.message || ""}`
+  ].join("\n");
 
-  // Fallback: abrir correo del cliente con mensaje precargado
-  const subject = encodeURIComponent('Nuevo pedido — Sugar Victory');
-  const body = encodeURIComponent(
-    `Nombre: ${data.name}\nEmail: ${data.email}\nTeléfono: ${data.phone||''}\nServicio: ${data.service||''}\n\nMensaje:\n${data.message}`
-  );
-  window.open(`mailto:hola@sugarvictory.es?subject=${subject}&body=${body}`,'_blank');
+  window.open(`https://wa.me/34624728404?text=${encodeURIComponent(message)}`, "_blank", "noopener");
   form.reset();
 });
